@@ -47,3 +47,16 @@ export default {
     </form>
   </div>
 </template>
+
+<style scoped>
+label {
+  vertical-align: middle;
+  margin-right: 1em;
+}
+#memo-content {
+  width: 200px;
+  height: 100px;
+  vertical-align: middle;
+  margin-right: 1em;
+}
+</style>
