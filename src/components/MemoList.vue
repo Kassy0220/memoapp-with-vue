@@ -83,10 +83,30 @@ export default {
 
         <template v-else>
           {{ memo.content }}
-          <BaseButton @click="editMemo(memo.id)">編集</BaseButton>
-          <BaseButton @click="deleteMemo(memo.id)">削除</BaseButton>
+          <div class="memo-buttons">
+            <BaseButton @click="editMemo(memo.id)">編集</BaseButton>
+            <BaseButton @click="deleteMemo(memo.id)">削除</BaseButton>
+          </div>
         </template>
       </li>
     </ul>
   </div>
 </template>
+
+<style scoped>
+ul {
+  padding: 0;
+}
+li {
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border-left: 10px solid black;
+  background-color: #eeeeee;
+}
+button {
+  margin-right: 1em;
+}
+.memo-buttons {
+  text-align: right;
+}
+</style>

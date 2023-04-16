@@ -24,3 +24,12 @@ export default {
     </form>
   </div>
 </template>
+
+<style scoped>
+textarea {
+  width: 200px;
+  height: 100px;
+  margin-right: 1em;
+  vertical-align: middle;
+}
+</style>
