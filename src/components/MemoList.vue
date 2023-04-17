@@ -1,8 +1,18 @@
 <script>
+import BaseButton from './BaseButton.vue'
+
 export default {
+  components: {
+    BaseButton
+  },
   data() {
     return {
-      allMemos: this.parseMemos()
+      allMemos: []
+    }
+  },
+  mounted() {
+    if (localStorage.length > 0) {
+      this.allMemos = this.parseMemos()
     }
   },
   methods: {
@@ -15,6 +25,10 @@ export default {
         return memo
       })
       return memos.sort((a, b) => a.id - b.id)
+    },
+    deleteMemo(id) {
+      this.allMemos = this.allMemos.filter((memo) => !(memo.id === id))
+      localStorage.removeItem(id)
     }
   }
 }
@@ -29,6 +43,7 @@ export default {
         :key="memo.id"
       >
         {{ memo.content }}
+        <BaseButton @click="deleteMemo(memo.id)">削除</BaseButton>
       </li>
     </ul>
   </div>
