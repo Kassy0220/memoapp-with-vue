@@ -1,16 +1,16 @@
 <script>
-import MemoCreateForm from './components/MemoCreateForm.vue'
-import MemoList from './components/MemoList.vue'
+import ToDoCreateForm from './components/ToDoCreateForm.vue'
+import ToDoList from './components/ToDoList.vue'
 
 export default {
   components: {
-    MemoCreateForm,
-    MemoList
+    ToDoCreateForm,
+    ToDoList
   }
 }
 </script>
 
 <template>
-  <MemoCreateForm />
-  <MemoList />
+  <ToDoCreateForm />
+  <ToDoList />
 </template>

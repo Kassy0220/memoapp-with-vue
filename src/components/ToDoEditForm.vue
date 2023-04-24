@@ -9,7 +9,7 @@ export default {
     id: String,
     content: String
   },
-  emits: ['update:content', 'updateMemo']
+  emits: ['update:content', 'updateToDo']
 }
 </script>
 
@@ -20,7 +20,7 @@ export default {
         :value="content"
         @input="$emit('update:content', $event.target.value)"
       />
-      <BaseButton @click="$emit('updateMemo', '#update-form', id, content)">更新</BaseButton>
+      <BaseButton @click="$emit('updateToDo', '#update-form', id, content)">更新</BaseButton>
     </form>
   </div>
 </template>

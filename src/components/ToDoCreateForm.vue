@@ -7,28 +7,28 @@ export default {
   },
   data() {
     return {
-      memoContent: ''
+      todoContent: ''
     }
   },
   methods: {
-    saveMemo() {
-      if (!this.memoContent) {
-        alert('メモの内容を入力してください')
+    saveToDo() {
+      if (!this.todoContent) {
+        alert('ToDoの内容を入力してください')
         return
       }
 
-      let memoID = this.assignMemoID()
-      localStorage.setItem(memoID, this.memoContent)
+      let todoID = this.assignToDoID()
+      localStorage.setItem(todoID, this.todoContent)
     },
-    assignMemoID() {
+    assignToDoID() {
       if (localStorage.length === 0) {
         return 1
       }
 
-      let maxMemoID = Object.keys(localStorage)
+      let maxToDoID = Object.keys(localStorage)
         .map((id) => Number(id))
         .reduce((a, b) => Math.max(a, b))
-      return maxMemoID + 1
+      return maxToDoID + 1
     }
   }
 }
@@ -37,13 +37,13 @@ export default {
 <template>
   <div>
     <form id="create-form">
-      <label for="memo-content">メモの作成 :</label>
+      <label for="todo-content">ToDoを作成 :</label>
       <textarea
-        v-model="memoContent"
-        id="memo-content"
-        placeholder="メモ内容を入力"
+        v-model="todoContent"
+        id="todo-content"
+        placeholder="ToDoの内容を入力"
       />
-      <BaseButton @click="saveMemo">新規作成</BaseButton>
+      <BaseButton @click="saveToDo">新規作成</BaseButton>
     </form>
   </div>
 </template>
@@ -53,7 +53,7 @@ label {
   vertical-align: middle;
   margin-right: 1em;
 }
-#memo-content {
+#todo-content {
   width: 200px;
   height: 100px;
   vertical-align: middle;
