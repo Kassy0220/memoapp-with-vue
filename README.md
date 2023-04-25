@@ -7,7 +7,7 @@ todoapp-with-vue は、ブラウザ上で ToDo の登録、一覧、編集、削
 まずは、アプリをローカルに取得してください。
 
 ```
-git pull https://github.com/Kassy0220/memoapp-with-vue
+git pull https://github.com/Kassy0220/todoapp-with-vue
 ```
 
 次に、パッケージをインストールします。
