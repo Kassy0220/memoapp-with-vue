@@ -1,5 +1,6 @@
 <script>
 import BaseButton from './BaseButton.vue'
+import { v4 as uuidv4 } from 'uuid'
 
 export default {
   components: {
@@ -17,18 +18,8 @@ export default {
         return
       }
 
-      let todoID = this.assignToDoID()
+      const todoID = uuidv4()
       localStorage.setItem(todoID, this.todoContent)
-    },
-    assignToDoID() {
-      if (localStorage.length === 0) {
-        return 1
-      }
-
-      let maxToDoID = Object.keys(localStorage)
-        .map((id) => Number(id))
-        .reduce((a, b) => Math.max(a, b))
-      return maxToDoID + 1
     }
   }
 }
