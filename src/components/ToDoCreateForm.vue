@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-    saveToDo() {
+    createToDo() {
       if (!this.todoContent) {
         alert('ToDoの内容を入力してください')
         return
@@ -43,7 +43,7 @@ export default {
         id="todo-content"
         placeholder="ToDoの内容を入力"
       />
-      <BaseButton @click="saveToDo">新規作成</BaseButton>
+      <BaseButton @click="createToDo">新規作成</BaseButton>
     </form>
   </div>
 </template>
