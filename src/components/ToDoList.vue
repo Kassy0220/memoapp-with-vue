@@ -1,11 +1,11 @@
 <script>
 import BaseButton from './BaseButton.vue'
-import ToDoEditForm from './ToDoEditForm.vue'
+import ToDoUpdateForm from './ToDoUpdateForm.vue'
 
 export default {
   components: {
     BaseButton,
-    ToDoEditForm
+    ToDoUpdateForm
   },
   data() {
     return {
@@ -74,11 +74,11 @@ export default {
         :key="todo.id"
       >
         <template v-if="todo.isEditing">
-          <ToDoEditForm
+          <ToDoUpdateForm
             :id="todo.id"
             v-model:content="todo.content"
             @updateToDo="updateToDo"
-          ></ToDoEditForm>
+          ></ToDoUpdateForm>
         </template>
 
         <template v-else>
