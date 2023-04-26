@@ -7,59 +7,13 @@ export default {
     BaseButton,
     ToDoUpdateForm
   },
-  data() {
-    return {
-      allTasks: []
-    }
+  props: {
+    allTasks: Array
   },
-  mounted() {
-    if (localStorage.length > 0) {
-      this.allTasks = this.parseTasks()
-    }
-  },
+  emits: ['delete', 'edit', 'update'],
   methods: {
-    parseTasks() {
-      let allTasks = Object.entries(localStorage).map((record) => {
-        let todo = {}
-        todo.id = record[0]
-        todo.content = record[1]
-        todo.isEditing = false
-        return todo
-      })
-      return allTasks.sort((a, b) => a.id - b.id)
-    },
-    deleteToDo(id) {
-      this.allTasks = this.allTasks.filter((todo) => !(todo.id === id))
-      localStorage.removeItem(id)
-    },
-    editToDo(id) {
-      if (this.allTasks.find((todo) => todo.isEditing)) {
-        alert('既に編集中のToDOがあります')
-        return
-      }
-
-      for (const todo of this.allTasks) {
-        if (todo.id === id) {
-          todo.isEditing = true
-        }
-      }
-    },
-    updateToDo(formElement, id, content) {
-      if (!content) {
-        alert('ToDoの内容を入力してください')
-        return
-      }
-
-      let updateForm = this.$el.querySelector(formElement)
-      updateForm.submit()
-
-      for (const todo of this.allTasks) {
-        if (todo.id === id) {
-          todo.content = content
-          todo.isEditing = false
-        }
-      }
-      localStorage.setItem(id, content)
+    update(id, content) {
+      this.$emit('update', id, content)
     }
   }
 }
@@ -77,15 +31,15 @@ export default {
           <ToDoUpdateForm
             :id="todo.id"
             v-model:content="todo.content"
-            @updateToDo="updateToDo"
+            @updateToDo="update"
           ></ToDoUpdateForm>
         </template>
 
         <template v-else>
           {{ todo.content }}
           <div class="todo-buttons">
-            <BaseButton @click="editToDo(todo.id)">編集</BaseButton>
-            <BaseButton @click="deleteToDo(todo.id)">削除</BaseButton>
+            <BaseButton @click="$emit('edit', todo.id)">編集</BaseButton>
+            <BaseButton @click="$emit('delete', todo.id)">削除</BaseButton>
           </div>
         </template>
       </li>

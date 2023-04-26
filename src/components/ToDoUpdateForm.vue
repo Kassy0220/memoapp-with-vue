@@ -20,7 +20,7 @@ export default {
         :value="content"
         @input="$emit('update:content', $event.target.value)"
       />
-      <BaseButton @click="$emit('updateToDo', '#update-form', id, content)">更新</BaseButton>
+      <BaseButton @click="$emit('updateToDo', id, content)">更新</BaseButton>
     </form>
   </div>
 </template>
