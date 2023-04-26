@@ -10,7 +10,13 @@ export default {
       todoContent: ''
     }
   },
-  emits: ['create']
+  emits: ['create'],
+  methods: {
+    create() {
+      this.$emit('create', this.todoContent)
+      this.todoContent = ''
+    }
+  }
 }
 </script>
 
@@ -23,7 +29,7 @@ export default {
         id="todo-content"
         placeholder="ToDoの内容を入力"
       />
-      <BaseButton @click="$emit('create', todoContent)">新規作成</BaseButton>
+      <BaseButton @click="create">新規作成</BaseButton>
     </form>
   </div>
 </template>
