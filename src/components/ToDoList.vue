@@ -56,6 +56,7 @@ li {
   margin-bottom: 0.5em;
   border-left: 10px solid black;
   background-color: #eeeeee;
+  white-space: pre-wrap;
 }
 button {
   margin-right: 1em;
