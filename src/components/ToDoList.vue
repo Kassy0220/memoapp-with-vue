@@ -10,10 +10,10 @@ export default {
   props: {
     allTasks: Array
   },
-  emits: ['delete', 'edit', 'update'],
+  emits: ['deleteToDo', 'editToDo', 'updateToDo'],
   methods: {
-    update(id, content) {
-      this.$emit('update', id, content)
+    updateToDo(id, content) {
+      this.$emit('updateToDo', id, content)
     }
   }
 }
@@ -31,15 +31,15 @@ export default {
           <ToDoUpdateForm
             :id="todo.id"
             v-model:content="todo.content"
-            @updateToDo="update"
+            @updateToDo="updateToDo"
           ></ToDoUpdateForm>
         </template>
 
         <template v-else>
           {{ todo.content }}
           <div class="todo-buttons">
-            <BaseButton @click="$emit('edit', todo.id)">編集</BaseButton>
-            <BaseButton @click="$emit('delete', todo.id)">削除</BaseButton>
+            <BaseButton @click="$emit('editToDo', todo.id)">編集</BaseButton>
+            <BaseButton @click="$emit('deleteToDo', todo.id)">削除</BaseButton>
           </div>
         </template>
       </li>

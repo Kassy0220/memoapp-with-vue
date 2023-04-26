@@ -68,13 +68,13 @@ export default {
 </script>
 
 <template>
-  <ToDoCreateForm @create="createToDo" />
+  <ToDoCreateForm @createToDo="createToDo" />
   <ToDoList
     :allTasks="allTasks"
     v-on="{
-      delete: this.deleteToDo,
-      edit: this.editToDo,
-      update: this.updateToDo
+      deleteToDo: this.deleteToDo,
+      editToDo: this.editToDo,
+      updateToDo: this.updateToDo
     }"
   />
 </template>
