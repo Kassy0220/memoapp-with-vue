@@ -5,7 +5,12 @@ export default {
 </script>
 
 <template>
-  <button @click="$emit('click')"><slot></slot></button>
+  <button
+    type="button"
+    @click="$emit('click')"
+  >
+    <slot></slot>
+  </button>
 </template>
 
 <style scoped>
