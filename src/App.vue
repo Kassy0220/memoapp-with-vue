@@ -15,32 +15,23 @@ export default {
   },
   mounted() {
     if (localStorage.length > 0) {
-      this.allTasks = this.parseTasks()
+      this.allTasks = JSON.parse(localStorage.getItem('allTasks'))
     }
   },
   methods: {
-    parseTasks() {
-      let allTasks = Object.entries(localStorage).map((record) => {
-        let todo = {}
-        todo.id = record[0]
-        todo.content = record[1]
-        todo.isEditing = false
-        return todo
-      })
-      return allTasks.sort((a, b) => a.id - b.id)
-    },
     createToDo(content) {
       if (!content) {
         alert('ToDoの内容を入力してください')
         return
       }
 
-      const todoID = uuidv4()
-      localStorage.setItem(todoID, content)
+      const todo = { id: uuidv4(), content: content, isEditing: false }
+      this.allTasks.push(todo)
+      this.saveTask()
     },
     deleteToDo(id) {
       this.allTasks = this.allTasks.filter((todo) => !(todo.id === id))
-      localStorage.removeItem(id)
+      this.saveTask()
     },
     editToDo(id) {
       if (this.allTasks.find((todo) => todo.isEditing)) {
@@ -53,6 +44,7 @@ export default {
           todo.isEditing = true
         }
       }
+      this.saveTask()
     },
     updateToDo(id, content) {
       if (!content) {
@@ -66,7 +58,10 @@ export default {
           todo.isEditing = false
         }
       }
-      localStorage.setItem(id, content)
+      this.saveTask()
+    },
+    saveTask() {
+      localStorage.setItem('allTasks', JSON.stringify(this.allTasks))
     }
   }
 }
