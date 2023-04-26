@@ -1,6 +1,5 @@
 <script>
 import BaseButton from './BaseButton.vue'
-import { v4 as uuidv4 } from 'uuid'
 
 export default {
   components: {
@@ -11,17 +10,7 @@ export default {
       todoContent: ''
     }
   },
-  methods: {
-    createToDo() {
-      if (!this.todoContent) {
-        alert('ToDoの内容を入力してください')
-        return
-      }
-
-      const todoID = uuidv4()
-      localStorage.setItem(todoID, this.todoContent)
-    }
-  }
+  emits: ['create']
 }
 </script>
 
@@ -34,7 +23,7 @@ export default {
         id="todo-content"
         placeholder="ToDoの内容を入力"
       />
-      <BaseButton @click="createToDo">新規作成</BaseButton>
+      <BaseButton @click="$emit('create', todoContent)">新規作成</BaseButton>
     </form>
   </div>
 </template>
