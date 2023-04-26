@@ -35,7 +35,7 @@ export default {
     },
     editToDo(id) {
       if (this.allTasks.find((todo) => todo.isEditing)) {
-        alert('既に編集中のToDOがあります')
+        alert('既に編集中のToDoがあります')
         return
       }
 
