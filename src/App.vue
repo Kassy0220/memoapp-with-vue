@@ -14,9 +14,9 @@ export default {
     }
   },
   mounted() {
-    if (localStorage.length > 0) {
-      this.allTasks = JSON.parse(localStorage.getItem('allTasks'))
-    }
+    // 一度もToDoを作成していない場合 allTasks は null になる
+    const allTasks = JSON.parse(localStorage.getItem('allTasks'))
+    this.allTasks = allTasks ? allTasks : []
   },
   methods: {
     createToDo(content) {
