@@ -39,11 +39,8 @@ export default {
         return
       }
 
-      for (const todo of this.allTasks) {
-        if (todo.id === id) {
-          todo.isEditing = true
-        }
-      }
+      let todoInEdit = this.allTasks.find((todo) => todo.id === id)
+      todoInEdit.isEditing = true
       this.saveTask()
     },
     updateToDo(id, content) {
@@ -52,12 +49,9 @@ export default {
         return
       }
 
-      for (const todo of this.allTasks) {
-        if (todo.id === id) {
-          todo.content = content
-          todo.isEditing = false
-        }
-      }
+      let todoInUpdate = this.allTasks.find((todo) => todo.id === id)
+      todoInUpdate.content = content
+      todoInUpdate.isEditing = false
       this.saveTask()
     },
     saveTask() {
