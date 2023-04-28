@@ -25,7 +25,7 @@ export default {
         return
       }
 
-      const todo = { id: uuidv4(), content: content, isEditing: false }
+      const todo = { id: uuidv4(), content, isEditing: false }
       this.allTasks.push(todo)
       this.saveTask()
     },
