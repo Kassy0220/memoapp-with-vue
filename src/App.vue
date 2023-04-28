@@ -30,7 +30,7 @@ export default {
       this.saveTask()
     },
     deleteToDo(id) {
-      this.allTasks = this.allTasks.filter((todo) => !(todo.id === id))
+      this.allTasks = this.allTasks.filter((todo) => todo.id !== id)
       this.saveTask()
     },
     editToDo(id) {
