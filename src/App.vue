@@ -65,10 +65,8 @@ export default {
   <ToDoCreateForm @createToDo="createToDo" />
   <ToDoList
     :allTasks="allTasks"
-    v-on="{
-      deleteToDo: this.deleteToDo,
-      editToDo: this.editToDo,
-      updateToDo: this.updateToDo
-    }"
+    @deleteToDo="this.deleteToDo"
+    @editToDo="this.editToDo"
+    @updateToDo="this.updateToDo"
   />
 </template>
