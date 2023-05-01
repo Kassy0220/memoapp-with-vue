@@ -16,7 +16,7 @@ export default {
   mounted() {
     // 一度もToDoを作成していない場合 allTasks は null になる
     const allTasks = JSON.parse(localStorage.getItem('allTasks'))
-    this.allTasks = allTasks ? allTasks : []
+    this.allTasks = allTasks || []
   },
   methods: {
     createToDo(content) {
