@@ -10,13 +10,13 @@ export default {
   },
   data() {
     return {
-      allTasks: []
+      allToDoes: []
     }
   },
   mounted() {
-    const allTasks = JSON.parse(localStorage.getItem('allTasks'))
-    if (allTasks !== null) {
-      this.allTasks = allTasks
+    const allToDoes = JSON.parse(localStorage.getItem('allToDoes'))
+    if (allToDoes !== null) {
+      this.allToDoes = allToDoes
     }
   },
   methods: {
@@ -27,22 +27,22 @@ export default {
       }
 
       const todo = { id: uuidv4(), content, isEditing: false }
-      this.allTasks.push(todo)
-      this.saveTask()
+      this.allToDoes.push(todo)
+      this.saveToDo()
     },
     deleteToDo(id) {
-      this.allTasks = this.allTasks.filter((todo) => todo.id !== id)
-      this.saveTask()
+      this.allToDoes = this.allToDoes.filter((todo) => todo.id !== id)
+      this.saveToDo()
     },
     editToDo(id) {
-      if (this.allTasks.some((todo) => todo.isEditing)) {
+      if (this.allToDoes.some((todo) => todo.isEditing)) {
         alert('既に編集中のToDoがあります')
         return
       }
 
-      const todoInEdit = this.allTasks.find((todo) => todo.id === id)
+      const todoInEdit = this.allToDoes.find((todo) => todo.id === id)
       todoInEdit.isEditing = true
-      this.saveTask()
+      this.saveToDo()
     },
     updateToDo(id, content) {
       if (!content) {
@@ -50,13 +50,13 @@ export default {
         return
       }
 
-      const todoInUpdate = this.allTasks.find((todo) => todo.id === id)
+      const todoInUpdate = this.allToDoes.find((todo) => todo.id === id)
       todoInUpdate.content = content
       todoInUpdate.isEditing = false
-      this.saveTask()
+      this.saveToDo()
     },
-    saveTask() {
-      localStorage.setItem('allTasks', JSON.stringify(this.allTasks))
+    saveToDo() {
+      localStorage.setItem('allToDoes', JSON.stringify(this.allToDoes))
     }
   }
 }
@@ -65,7 +65,7 @@ export default {
 <template>
   <ToDoCreateForm @createToDo="createToDo" />
   <ToDoList
-    :allTasks="allTasks"
+    :allToDoes="allToDoes"
     @deleteToDo="deleteToDo"
     @editToDo="editToDo"
     @updateToDo="updateToDo"

@@ -8,7 +8,7 @@ export default {
     ToDoUpdateForm
   },
   props: {
-    allTasks: Array
+    allToDoes: Array
   },
   emits: ['deleteToDo', 'editToDo', 'updateToDo'],
   methods: {
@@ -24,7 +24,7 @@ export default {
     <p>作成したToDo</p>
     <ul>
       <li
-        v-for="todo in allTasks"
+        v-for="todo in allToDoes"
         :key="todo.id"
       >
         <template v-if="todo.isEditing">
