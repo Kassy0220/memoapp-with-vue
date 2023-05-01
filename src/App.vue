@@ -65,8 +65,8 @@ export default {
   <ToDoCreateForm @createToDo="createToDo" />
   <ToDoList
     :allTasks="allTasks"
-    @deleteToDo="this.deleteToDo"
-    @editToDo="this.editToDo"
-    @updateToDo="this.updateToDo"
+    @deleteToDo="deleteToDo"
+    @editToDo="editToDo"
+    @updateToDo="updateToDo"
   />
 </template>
