@@ -39,7 +39,7 @@ export default {
         return
       }
 
-      let todoInEdit = this.allTasks.find((todo) => todo.id === id)
+      const todoInEdit = this.allTasks.find((todo) => todo.id === id)
       todoInEdit.isEditing = true
       this.saveTask()
     },
@@ -49,7 +49,7 @@ export default {
         return
       }
 
-      let todoInUpdate = this.allTasks.find((todo) => todo.id === id)
+      const todoInUpdate = this.allTasks.find((todo) => todo.id === id)
       todoInUpdate.content = content
       todoInUpdate.isEditing = false
       this.saveTask()
