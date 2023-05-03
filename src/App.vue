@@ -10,13 +10,13 @@ export default {
   },
   data() {
     return {
-      allToDoes: []
+      allToDos: []
     }
   },
   mounted() {
-    const allToDoes = JSON.parse(localStorage.getItem('allToDoes'))
-    if (allToDoes !== null) {
-      this.allToDoes = allToDoes
+    const allToDos = JSON.parse(localStorage.getItem('allToDos'))
+    if (allToDos !== null) {
+      this.allToDos = allToDos
     }
   },
   methods: {
@@ -27,20 +27,20 @@ export default {
       }
 
       const todo = { id: uuidv4(), content, isEditing: false }
-      this.allToDoes.push(todo)
+      this.allToDos.push(todo)
       this.saveToDo()
     },
     deleteToDo(id) {
-      this.allToDoes = this.allToDoes.filter((todo) => todo.id !== id)
+      this.allToDos = this.allToDos.filter((todo) => todo.id !== id)
       this.saveToDo()
     },
     editToDo(id) {
-      if (this.allToDoes.some((todo) => todo.isEditing)) {
+      if (this.allToDos.some((todo) => todo.isEditing)) {
         alert('既に編集中のToDoがあります')
         return
       }
 
-      const todoInEdit = this.allToDoes.find((todo) => todo.id === id)
+      const todoInEdit = this.allToDos.find((todo) => todo.id === id)
       todoInEdit.isEditing = true
       this.saveToDo()
     },
@@ -50,13 +50,13 @@ export default {
         return
       }
 
-      const todoInUpdate = this.allToDoes.find((todo) => todo.id === id)
+      const todoInUpdate = this.allToDos.find((todo) => todo.id === id)
       todoInUpdate.content = content
       todoInUpdate.isEditing = false
       this.saveToDo()
     },
     saveToDo() {
-      localStorage.setItem('allToDoes', JSON.stringify(this.allToDoes))
+      localStorage.setItem('allToDos', JSON.stringify(this.allToDos))
     }
   }
 }
@@ -65,7 +65,7 @@ export default {
 <template>
   <ToDoCreateForm @createToDo="createToDo" />
   <ToDoList
-    :allToDoes="allToDoes"
+    :allToDos="allToDos"
     @deleteToDo="deleteToDo"
     @editToDo="editToDo"
     @updateToDo="updateToDo"
